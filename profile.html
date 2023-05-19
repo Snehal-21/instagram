@@ -86,6 +86,89 @@
         width:65%;
         font-size: 18px;
     }
+    #body{
+        width:85%;
+        height:700px;
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-left: 15%;
+        border:1px solid green;
+    }
+    #profile{
+        width:70%;
+        height:700px;
+        border:2px solid blue;
+    }
+    #profilehead{
+        height:250px;
+        width:100%;
+        /* border:1px solid red; */
+        border-bottom: 1px solid rgb(204, 202, 202);
+        display: flex;
+        justify-content: space-evenly;
+    }
+    #profileimage{
+        width:30%;
+        height:100%;
+        /* border:1px solid green; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #profileimage>img{
+        height:70%;
+        width:70%;
+        border-radius: 50%;
+        border:1px solid red;
+    }
+    #profileinfo{
+        width:55%;
+        height:100%;
+        /* border:1px solid blue; */
+        padding-top: 60px;
+    }
+    #profileinfo>div:nth-child(1){
+        display: flex;
+        width: 60%;
+        justify-content: space-between;
+    }
+    #profileinfo>div:nth-child(1)>p{
+        width:60%;
+        font-size: 25px;
+    }
+    #profileinfo>div:nth-child(1)>button{
+        width:40%;
+        background-color: rgb(236, 232, 232);
+        color:black;
+        height:30px;
+        border: none;
+        border-radius: 10px;
+    }
+    #profileinfo>div:nth-child(2){
+        display: flex;
+        margin-top: 40px;
+        width:60%;
+        justify-content: space-between;
+    }
+    #profilebody{
+        width:100%;
+        border:2px solid gold;
+    }
+    #mainprofile{
+        width:100%;
+        border:2px solid gold;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    #mainprofile>div{
+        width:32.90%;
+        height:200px;
+        border:1px solid red;
+        margin-bottom: 5px;
+    }
 </style>
 <body>
     <div id="screen">
@@ -94,7 +177,7 @@
                 <p>Instagram</p>
             </div>
             <div id="sessions">
-                <div>
+                <div style="cursor: pointer;"; onclick="window.location.href='./home.html'" >
                     <i class="fa-solid fa-house"></i>
                     <p>Home</p>
                 </div>
@@ -131,6 +214,48 @@
                 <div>
                     <i class="fa-solid fa-bars"></i>
                     <p>more</p>
+                </div>
+            </div>
+        </div>
+        <div id="body">
+            <div id="profile">
+                <div id="profilehead">
+                    <div id="profileimage">
+                        <img src="" alt="profile-image" />
+                    </div>
+                    <div id="profileinfo">
+                        <div>
+                            <p>aaaaa</p>
+                            <button>Edit Profile</button>
+                        </div>
+                        <div>
+                            <p>Posts</p>
+                            <p>Followers</p>
+                            <p>Following</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="profilebody">
+                    <div id="mainprofile">
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                        <div>
+                            <img src="" alt="post" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
