@@ -339,7 +339,7 @@
                     <i class="fa-regular fa-square-plus"></i>
                     <p>Create</p>
                 </div>
-                <div>
+                <div id="switch" style="cursor: pointer;" onclick="window.location.href='./profile.html'">
                     <i class="fa-regular fa-user"></i>
                     <p>Profile</p>
                 </div>
@@ -423,13 +423,15 @@
             var loginuser=document.getElementById("profile");
             var logoutUser=document.getElementById("profile");
             var suggestedusers=document.getElementById("suggestions");
-            console.log(logoutUser,"logout")
+            var profilename=document.getElementById("switch");
+            // console.log(profile,"profile here")
             var finalstory="";
             var finalposts="";
             var finallogin="";
             var finalsuggestions="";
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
-            // console.log(login,"login user");
+            var profiledata=JSON.parse(localStorage.getItem("Instagramlogin"));
+            // console.log(logindata,"login user");
             var storyfromls=JSON.parse(localStorage.getItem("story"));
             for(var i=0;i<storyfromls.length;i++){
                 finalstory+=` <div id="story">
@@ -440,6 +442,7 @@
                     </div>`;
             }
             stories.innerHTML=finalstory;
+
             var postfromls=JSON.parse(localStorage.getItem("post"));
             for(var j=0;j<postfromls.length;j++){
                 finalposts+=` <div id="post">
@@ -474,11 +477,14 @@
                     </div>`;
             }
             posts.innerHTML=finalposts;
+
             finallogin=` <p><span>${logindata.uname} </span><span>Logout</span></p>`;
             // console.log(finallogin,"login name here");
             loginuser.innerHTML=finallogin;
+
             var button=`<p><span>snehal</span><span onclick="logout()">Logout</span></p>`;
             logoutUser.innerHTML=button;
+
             for(var k=0;k<storyfromls.length;k++){
                 finalsuggestions+=`<div>
                             <div>
@@ -489,6 +495,12 @@
                         </div>`;
             }
             suggestedusers.innerHTML=finalsuggestions;
+
+            var profileuser=`<i class="fa-regular fa-user"></i>
+            <p>${profiledata.uname}</p>`;
+            // console.log(`${profiledata.uname}`,"profileuser here");
+            profilename.innerHTML=profileuser;
+
         }
         function logout(){
         alert("logout successful.")
