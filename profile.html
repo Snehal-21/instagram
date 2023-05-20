@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <script src="https://kit.fontawesome.com/43b779b2fa.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <style>
     *{
@@ -295,11 +298,11 @@
             profilename.innerHTML=profileuser;
 
             var divprofileposts=document.getElementById("mainprofile");
-            var profilepostls=JSON.parse(localStorage.getItem("post"));
+            var profilepostls=JSON.parse(localStorage.getItem("profilePost"));
             var profilepostsdata="";
             for(var i=0;i<profilepostls.length;i++){
                 profilepostsdata+=`<div>
-                            <img src="${profilepostls[i].post}" alt="post" />
+                            <img src="${profilepostls[i].image}" alt="post" />
                         </div>`;
             }
             divprofileposts.innerHTML=profilepostsdata;

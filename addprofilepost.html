@@ -7,22 +7,32 @@
     <title>profilepost</title>
 </head>
 <body>
-    <form onclick="addprofilepost(event)">
-        <input id="uimage" type="text" placeholder="Enter image.." />
-        <input type="submit" value="submit" />
+    <form onsubmit="addprofilepost(event)">
+        <input id="u_image" type="text" placeholder="Enter image.." /></br></br>
+        <input id="u_des" type="text" placeholder="Enter description.." /></br></br>
+        <input type="submit" value="add post" />
     </form>
     <script>
         function addprofilepost(event){
             event.preventDefault();
-            var image=document.getElementById("uimage").value;
-            var profilepostdata={image};
+            var image=document.getElementById("u_image").value;
+            var des=document.getElementById("u_des").value;
+            // console.log(image,des);
+            var profilepostdata={image,des};
 
-            var profilepostls=JSON.parse(localStorage.getItem("profilepost")) || [];
-            profilepostls.push(profilepostdata);
+            // var profilepostls = JSON.parse(localStorage.getItem("profilepost")) || [];
+            // profilepostls.push(profilepostdata);
 
-            localStorage.setItem("profilepost",JSON.stringify(profilepostls));
+            // localStorage.setItem("profilepost", JSON.stringify(profilepostls));
+
+            var post_storage = JSON.parse(localStorage.getItem("profilePost")) || [];
+            post_storage.push(profilepostdata);
+
+            localStorage.setItem("profilePost", JSON.stringify(post_storage));
+
             alert("post added successfully");
-            document.getElementById("image").value='';
+            document.getElementById("u_image").value='';
+            document.getElementById("u_des").value='';
         }
     </script>
 </body>
