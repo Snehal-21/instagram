@@ -16,7 +16,7 @@
     #screen{
         width:100%;
         height:700px;
-        border:1px solid red;
+        /* border:1px solid red; */
     }
     #sidebar{
         width:15%;
@@ -88,18 +88,18 @@
     }
     #body{
         width:85%;
-        height:700px;
+        /* height:700px; */
         display: flex;
         justify-content: center;
         overflow-y: auto;
         overflow-x: hidden;
         margin-left: 15%;
-        border:1px solid green;
+        /* border:1px solid green; */
     }
     #profile{
         width:70%;
         height:700px;
-        border:2px solid blue;
+        /* border:2px solid blue; */
     }
     #profilehead{
         height:250px;
@@ -121,7 +121,7 @@
         height:70%;
         width:70%;
         border-radius: 50%;
-        border:1px solid red;
+        /* border:1px solid red; */
     }
     #profileinfo{
         width:55%;
@@ -156,20 +156,22 @@
         display: flex;
         height:40px;
         width:60%;
-        border:1px solid blue;
+        /* border:1px solid blue; */
         margin: auto;
         align-items: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
      #profilebodyheadings>div{
         width:25%;
      }
     #profilebody{
         width:100%;
-        border:2px solid gold;
+        /* border:2px solid gold; */
     }
     #mainprofile{
         width:100%;
-        border:2px solid gold;
+        /* border:2px solid gold; */
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -177,8 +179,12 @@
     #mainprofile>div{
         width:32.90%;
         height:200px;
-        border:1px solid red;
+        /* border:1px solid red; */
         margin-bottom: 5px;
+    }
+    #mainprofile>div>img{
+        height:100%;
+        width:100%;
     }
 </style>
 <body>
@@ -232,10 +238,10 @@
             <div id="profile">
                 <div id="profilehead">
                     <div id="profileimage">
-                        <img src="" alt="profile-image" />
+                        <img src="https://us.123rf.com/450wm/kritchanut/kritchanut1406/kritchanut140600089/29213191-female-avatar-silhouette-profile-pictures.jpg" alt="profile-image" />
                     </div>
                     <div id="profileinfo">
-                        <div>
+                        <div id="profilename">
                             <p>aaaaa</p>
                             <button>Edit Profile</button>
                         </div>
@@ -280,7 +286,9 @@
     <script>
          window.onload=function(){
             var profilename=document.getElementById("switch");
+            var divforname=document.getElementById("profilename");
             var profiledata=JSON.parse(localStorage.getItem("Instagramlogin"));
+            var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var profileuser=`<i class="fa-regular fa-user"></i>
             <p>${profiledata.uname}</p>`;
             // console.log(`${profiledata.uname}`,"profileuser here");
@@ -295,6 +303,11 @@
                         </div>`;
             }
             divprofileposts.innerHTML=profilepostsdata;
+
+            var name=` <p>${logindata.uname}</p>
+                            <button>Edit Profile</button>`;
+
+            divforname.innerHTML=name;
          }  
     </script>
 </body>
