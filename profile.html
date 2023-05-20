@@ -246,7 +246,7 @@
                     <div id="profileinfo">
                         <div id="profilename">
                             <p>aaaaa</p>
-                            <button>Edit Profile</button>
+                            <button style="cursor: pointer;" onclick="window.location.href='./profile.html'">Edit Profile</button>
                         </div>
                         <div>
                             <p>Posts</p>
@@ -266,21 +266,6 @@
                         <div>
                             <img src="" alt="post" />
                         </div>
-                        <!-- <div>
-                            <img src="" alt="post" />
-                        </div>
-                        <div>
-                            <img src="" alt="post" />
-                        </div>
-                        <div>
-                            <img src="" alt="post" />
-                        </div>
-                        <div>
-                            <img src="" alt="post" />
-                        </div>
-                        <div>
-                            <img src="" alt="post" />
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -289,13 +274,32 @@
     <script>
          window.onload=function(){
             var profilename=document.getElementById("switch");
-            var divforname=document.getElementById("profilename");
+            var changeprofile=document.getElementById("profilehead");
             var profiledata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
-            var profileuser=`<i class="fa-regular fa-user"></i>
-            <p>${profiledata.uname}</p>`;
+
+
+            var profiledata=JSON.parse(localStorage.getItem("editprofile"));
+            var editprofile=` <div id="profileimage">
+                        <img src="${profiledata.p_image}" alt="profile-image" />
+                    </div>
+                    <div id="profileinfo">
+                        <div id="profilename">
+                            <p>${profiledata.p_name}</p>
+                            <button>Edit Profile</button>
+                        </div>
+                        <div>
+                            <p>Posts</p>
+                            <p>Followers</p>
+                            <p>Following</p>
+                        </div>
+                    </div>`;
+
+            changeprofile.innerHTML=editprofile;
+            // var profileuser=`<i class="fa-regular fa-user"></i>
+            // <p>${profiledata.uname}</p>`;
             // console.log(`${profiledata.uname}`,"profileuser here");
-            profilename.innerHTML=profileuser;
+            // profilename.innerHTML=profileuser;
 
             var divprofileposts=document.getElementById("mainprofile");
             var profilepostls=JSON.parse(localStorage.getItem("profilePost"));

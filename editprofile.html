@@ -18,8 +18,8 @@
     }
     #screen{
         width: 100%;
-        height:750px;
-        border:1px solid red;
+        /* height:750px; */
+        /* border:1px solid red; */
     }
     #sidebar{
         width:15%;
@@ -89,6 +89,178 @@
         width:65%;
         font-size: 18px;
     }
+    #body{
+        width:85%;
+        /* display: flex; */
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-left: 15%;
+    }
+    #settings{
+        width:100%;
+        height:80px;
+        display: flex;
+        align-items: center;
+        /* border:1px solid green; */
+        padding-left: 30px;
+    }
+    #settings>p{
+        font-weight: bold;
+        font-size: 30px;
+    }
+    #edit{
+        width:60%;
+        /* height:600px; */
+        /* border:1px solid red; */
+        margin: auto;
+        display: flex;
+    }
+    #left{
+        width:32%;
+        /* height:600px; */
+        /* border:1px solid grey; */
+    }
+    #left-top{
+        /* height:300px; */
+        width:100%;
+        /* border:1px solid grey; */
+        border-top: 1px solid grey;
+        border-left: 1px solid grey;
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+    #left-top>h3{
+        font-size: 22px;
+    }
+    #left-top>p:nth-child(2){
+        font-size: 17px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+    #left-top>p:nth-child(3){
+        margin-top: 5px;
+        font-size: 15px;
+        margin-bottom: 10px;
+        color:rgb(104, 102, 102);
+    }
+    #left-top>div>p{
+        margin-bottom: 3px;
+        color:rgb(104, 102, 102);
+    }
+    #left-top>div>p>span{
+        margin-right: 10px;
+    }
+    #left-top>p:nth-child(5){
+        color:rgb(103,157,246);
+        margin-top: 15px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    #left-bottom{
+        /* height:600px; */
+        width:100%;
+        /* border:1px solid grey; */
+        border-left: 1px solid grey;
+        border-top: 1px solid grey;
+        /* padding-left: 20px; */
+    }
+    #left-bottom>div{
+        height:50px;
+        display: flex;
+        align-items: center;
+        
+    }
+    #left-bottom>div>p{
+        margin-left: 20px;
+    }
+    #left-bottom>div:nth-child(1){
+        border-left: 2px solid black;
+    }
+    #left-bottom>div:nth-child(1)>p{
+        font-weight: bold;
+    }
+    #left-bottom>p{
+        color:rgb(103,157,246);
+        margin-bottom: 30px;
+        margin-top: 10px;
+    }
+    #left-bottom>div>p{
+        font-size: 15px;
+    }
+    #right{
+        width:80%;
+        /* height:600px; */
+        border:1px solid grey;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #profilebody{
+        height:600px;
+        width:70%;
+        /* border:1px solid red; */
+    }
+    #profile{
+        height:150px;
+        width:100%;
+        border:1px solid rgb(236, 235, 235);
+        display: flex;
+        box-shadow: 5px 10px 15px rgb(234, 229, 229);
+    }
+    #profile>div:nth-child(1){
+        width:40%;
+        height:100%;
+        /* border:1px solid green; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #profile>div:nth-child(1)>img{
+        height:90%;
+        width:90%;
+        border-radius: 50%;
+    }
+    #profile>div:nth-child(2){
+        width:60%;
+        height:100%;
+        /* border:1px solid blue; */
+        padding-top: 40px;
+        padding-left: 20px;
+    }
+    #profile>div:nth-child(2)>p:nth-child(1){
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+    #editprofile{
+        width:100%;
+        /* height:350px; */
+        /* border:1px solid gold; */
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+    }
+    #editprofile>form{
+        width:80%;
+    }
+    #editprofile>form>label{
+        font-weight: bold;
+    }
+    #editprofile>form>input{
+        height:30px;
+        width:100%;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        padding-left: 20px;
+        border:1px solid grey;
+    }
+    #editprofile>form>input:nth-child(13){
+        width:50%;
+        margin-left: 70px;
+        background-color: rgb(103,157,246);
+        border: none;
+        color:white
+    }
 </style>
 <body>
     <div id="screen">
@@ -137,6 +309,102 @@
                 </div>
             </div>
         </div>
+        <div id="body">
+            <div id="settings">
+                <p>Settings</p>
+            </div>
+            <div id="edit">
+                <div id="left">
+                    <div id="left-top">
+                        <h3>Meta</h3>
+                        <p>Accounts Center</p>
+                        <p>Manage your connected experiences and account settings across Meta technologies.</p>
+                        <div>
+                            <p><span><i class="fa-regular fa-user"></i></span>Personal details</p>
+                            <p><span><i class="fa-solid fa-shield-halved"></i></span>Password and security</p>
+                            <p><span><i class="fa-regular fa-id-badge"></i></span>ad preferences</p>
+                        </div>
+                        <p>See more in Accounts Center</p>
+                    </div>
+                    <div id="left-bottom">
+                        <div>
+                            <p>Edit Profile</p>
+                        </div>
+                        <div>
+                            <p>Apps and websites</p>
+                        </div>
+                        <div>
+                            <p>Email notifications</p>
+                        </div>
+                        <div>
+                            <p>What you see</p>
+                        </div>
+                        <div>
+                            <p>Wwho can see your content</p>
+                        </div>
+                        <div>
+                            <p>How others can interact with you</p>
+                        </div>
+                        <div>
+                            <p>Supervision</p>
+                        </div>
+                        <div>
+                            <p>Help</p>
+                        </div>
+                        <p>Switch to  professional account</p>
+                    </div>
+                </div>
+                <div id="right">
+                    <div id="profilebody">
+                        <div id="profile">
+                            <div>
+                                <img src="https://us.123rf.com/450wm/kritchanut/kritchanut1406/kritchanut140600089/29213191-female-avatar-silhouette-profile-pictures.jpg" alt="profile" />
+                            </div>
+                            <div>
+                                <p>Name</p>
+                                <p>Bio</p>
+                            </div>
+                        </div>
+                        <div id="editprofile">
+                            <form onsubmit="editProfile(event)">
+                                <label>Name:</label></br>
+                                <input id="name" type="text" placeholder="Enter name..."/></br>
+                                <label>Profile Image:</label></br>
+                                <input id="image" type="text" placeholder="Enter profile Image"/></br>
+                                <label>Bio:</label></br>
+                                <input id="bio" type="text" placeholder="Enter Bio..."/></br>
+                                <input type="submit" value="submit"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        window.onload=function(){
+            var divForProfile=document.getElementById("profile");
+            var localProfileData=JSON.parse(localStorage.getItem("editprofile"));
+            var changeProfile=` <div>
+                                <img src="${localProfileData.p_image}" alt="profile" />
+                            </div>
+                            <div>
+                                <p>${localProfileData.p_name}</p>
+                                <p>${localProfileData.p_bio}</p>
+                            </div>`;
+            divForProfile.innerHTML=changeProfile;
+        }
+        function editProfile(event){
+            var p_name=document.getElementById("name").value;
+            var p_image=document.getElementById("image").value;
+            var p_bio=document.getElementById("bio").value;
+            var user_profile={p_name,p_image,p_bio};
+
+            localStorage.setItem("editprofile",JSON.stringify(user_profile));
+            document.getElementById("name").value='';
+            document.getElementById("image").value='';
+            document.getElementById("bio").value='';
+        }
+    </script>
 </body>
 </html>
