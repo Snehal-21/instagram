@@ -152,6 +152,17 @@
         width:60%;
         justify-content: space-between;
     }
+    #profilebodyheadings{
+        display: flex;
+        height:40px;
+        width:60%;
+        border:1px solid blue;
+        margin: auto;
+        align-items: center;
+    }
+     #profilebodyheadings>div{
+        width:25%;
+     }
     #profilebody{
         width:100%;
         border:2px solid gold;
@@ -236,11 +247,17 @@
                     </div>
                 </div>
                 <div id="profilebody">
+                    <div id="profilebodyheadings">
+                        <div style="cursor: pointer;"; onclick="window.location.href='./addprofilepost.html'"><p>Posts</p></div>
+                        <div><p>Reels</p></div>
+                        <div><p>Saved</p></div>
+                        <div><p>Tagged</p></div>
+                    </div>
                     <div id="mainprofile">
                         <div>
                             <img src="" alt="post" />
                         </div>
-                        <div>
+                        <!-- <div>
                             <img src="" alt="post" />
                         </div>
                         <div>
@@ -254,7 +271,7 @@
                         </div>
                         <div>
                             <img src="" alt="post" />
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -268,7 +285,17 @@
             <p>${profiledata.uname}</p>`;
             // console.log(`${profiledata.uname}`,"profileuser here");
             profilename.innerHTML=profileuser;
-         }
+
+            var divprofileposts=document.getElementById("mainprofile");
+            var profilepostls=JSON.parse(localStorage.getItem("post"));
+            var profilepostsdata="";
+            for(var i=0;i<profilepostls.length;i++){
+                profilepostsdata+=`<div>
+                            <img src="${profilepostls[i].post}" alt="post" />
+                        </div>`;
+            }
+            divprofileposts.innerHTML=profilepostsdata;
+         }  
     </script>
 </body>
 </html>
