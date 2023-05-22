@@ -8,6 +8,7 @@
 </head>
 <body>
     <form onsubmit="addprofilepost(event)">
+        <input id="u_email" type="email" placeholder="Enter Email" />
         <input id="u_image" type="text" placeholder="Enter image.." /></br></br>
         <input id="u_des" type="text" placeholder="Enter description.." /></br></br>
         <input type="submit" value="add post" />
@@ -15,10 +16,11 @@
     <script>
         function addprofilepost(event){
             event.preventDefault();
+            var email=document.getElementById("u_email").value;
             var image=document.getElementById("u_image").value;
             var des=document.getElementById("u_des").value;
             // console.log(image,des);
-            var profilepostdata={image,des};
+            var profilepostdata={email,image,des};
 
             // var profilepostls = JSON.parse(localStorage.getItem("profilepost")) || [];
             // profilepostls.push(profilepostdata);
@@ -31,6 +33,7 @@
             localStorage.setItem("profilePost", JSON.stringify(post_storage));
 
             alert("post added successfully");
+            document.getElementById("u_email").value='';
             document.getElementById("u_image").value='';
             document.getElementById("u_des").value='';
         }

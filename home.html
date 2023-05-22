@@ -430,7 +430,7 @@
             var finallogin="";
             var finalsuggestions="";
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
-            var profiledata=JSON.parse(localStorage.getItem("Instagramlogin"));
+            var login_user=JSON.parse(localStorage.getItem("Instagramlogin"));
             // console.log(logindata,"login user");
             var storyfromls=JSON.parse(localStorage.getItem("story"));
             for(var i=0;i<storyfromls.length;i++){
@@ -484,22 +484,30 @@
 
             var button=`<p><span>snehal</span><span onclick="logout()">Logout</span></p>`;
             logoutUser.innerHTML=button;
-
-            for(var k=0;k<storyfromls.length;k++){
+            var All_users=JSON.parse(localStorage.getItem("Instagramusers"));
+          var Registered_users=[];
+            for(var k=0;k<All_users.length;k++){
+                if(login_user.uemail == All_users.uemail){
+                    login_user=All_users[k];
+                }else{
+                    Registered_users.push(All_users[k]);
+                }
+            }
                 finalsuggestions+=`<div>
                             <div>
-                                <img src="${storyfromls[k].image}" alt="img"/>
-                                <p>${storyfromls[k].name}<br/><span>Suggested for You</span></p>
+                                
+                                <p>${Registered_users.uname}<br/><span>Suggested for You</span></p>
                             </div>
                             <div><p>Follow</p></div>
                         </div>`;
-            }
+            
+            console.log(Registered_users,"loginuser");
             suggestedusers.innerHTML=finalsuggestions;
-
-            var profileuser=`<i class="fa-regular fa-user"></i>
-            <p>${profiledata.uname}</p>`;
-            // console.log(`${profiledata.uname}`,"profileuser here");
-            profilename.innerHTML=profileuser;
+        
+            // var profileuser=`<i class="fa-regular fa-user"></i>
+            // <p>${profiledata.uname}</p>`;
+            // // console.log(`${profiledata.uname}`,"profileuser here");
+            // profilename.innerHTML=profileuser;
 
         }
         function logout(){

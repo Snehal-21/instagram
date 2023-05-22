@@ -384,23 +384,53 @@
     <script>
         window.onload=function(){
             var divForProfile=document.getElementById("profile");
-            var localProfileData=JSON.parse(localStorage.getItem("editprofile"));
+            var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
+            var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
+            var final_Profile;
+            for(var i=0;i<userdata.length;i++){
+                // alert("got")
+                if(currentUser.uemail == userdata[i].uemail){
+                    final_Profile=userdata[i].user_info;
+                }
+            }
+            console.log(final_Profile)
+            console.log(`${final_Profile.p_image}`,"kjsdnkaj");
             var changeProfile=` <div>
-                                <img src="${localProfileData.p_image}" alt="profile" />
+                                <img src="${final_Profile.p_image}" alt="profile" />
                             </div>
                             <div>
-                                <p>${localProfileData.p_name}</p>
-                                <p>${localProfileData.p_bio}</p>
+                                <p>${final_Profile.p_name}</p>
+                                <p>${final_Profile.p_bio}</p>
                             </div>`;
             divForProfile.innerHTML=changeProfile;
         }
         function editProfile(event){
+            event.preventDefault();
             var p_name=document.getElementById("name").value;
             var p_image=document.getElementById("image").value;
             var p_bio=document.getElementById("bio").value;
             var user_profile={p_name,p_image,p_bio};
 
-            localStorage.setItem("editprofile",JSON.stringify(user_profile));
+            var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
+            var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
+            
+            console.log(userdata,"userdata here")
+            for(var i=0;i<userdata.length;i++){
+                // alert("inside for loop");
+                if(currentUser.uemail==userdata[i].uemail){
+                    alert("got");
+                    if(userdata[i].user_info === undefined){
+                        userdata[i].user_info="";
+                    }
+                    else{
+                        userdata[i].user_info=user_profile;
+                    }
+                    alert("profile_info added successfuly")
+                }
+            }
+            // console.log(userdata[i].user_info,"userinfo here")
+
+            localStorage.setItem("Instagramusers",JSON.stringify(userdata));
             document.getElementById("name").value='';
             document.getElementById("image").value='';
             document.getElementById("bio").value='';
