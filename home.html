@@ -419,6 +419,17 @@
 #sugg_div{
     border:1px solid grey;
 }
+#sugg-head>img{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+}
+#sugg-head>p:nth-child(2){
+    font-size: 20px;
+}
+#sugg-head>p:nth-child(3){
+    font-size: 14px;
+}
 </style>
 
 <body>
@@ -432,7 +443,7 @@
                     <i class="fa-solid fa-house"></i>
                     <p>Home</p>
                 </div>
-                <div onclick="opennav()">
+                <div onclick="opennav()" ondblclick="closenav()">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Search</p>
                 </div>
@@ -478,7 +489,7 @@
             </div>
             <div id="search_result">
                 <div id="sugg-head" class="sugg_div">
-                    <img src="" />
+                    <!-- <img src="" /> -->
                     <p></p>
                 </div>
                 <div id="no_display">
@@ -532,7 +543,7 @@
             </div>
             <div id="bodyright">
                 <div id="profile" id="out">
-                    <p><span>snehal</span><span id>Logout</span></p>
+                    <!-- <p><span>snehal</span><span id>Logout</span></p> -->
                 </div>
                 <div id="suggested">
                     <div id="sugg-head">
@@ -558,6 +569,9 @@
         function opennav(){
             document.getElementById("mySidebar").style.width = "300px";
         }
+        function closenav(){
+            document.getElementById("mySidebar").style.width="0px";
+        }
         function SearchUser(event){
             event.preventDefault();
             var input=document.getElementById("Search_users").value;
@@ -580,32 +594,27 @@
             }
             // console.log(Registered_users,"users")
             for(var i=0;i<Registered_users.length;i++){
-                console.log(Registered_users[i].user_info,"name here")
+                // console.log(Registered_users[i].user_info,"name here")
                 if(Registered_users[i].uname==input){
                     display_users=Registered_users[i];
                 
                 var display=`<div id="sugg-head">
+                    <img src="${display_users.user_info.p_image}" />
                     <p>${display_users.uname}</p>
                     <p>Follow</p>
-                </div>`;
-            }
-            else{
-                var nodisplay=`<div id="no_display">
-                    <p>${set}</p>
                 </div>`;
             }
             }
            
             // console.log(display_users,"dis")
             divtodisplay.innerHTML=display;
-            empty.innerHTML=nodisplay;
             document.getElementById("Search_users").value='';
           
         }
         window.onload = function () {
             var stories = document.getElementById("bodyheader");
             var posts = document.getElementById("mainposts");
-            var loginuser = document.getElementById("profile");
+            var loginuser = document.getElementById("switch");
             var logoutUser = document.getElementById("profile");
             var suggestedusers = document.getElementById("suggestions");
             var profilename = document.getElementById("switch");
@@ -664,7 +673,8 @@
             // }
             // posts.innerHTML = finalposts;
 
-            finallogin = ` <p><span>${logindata.uname} </span><span>Logout</span></p>`;
+            finallogin = ` <i class="fa-regular fa-user"></i>
+                    <p>${logindata.uname}</p>`;
             // console.log(finallogin,"login name here");
             loginuser.innerHTML = finallogin;
 
@@ -674,11 +684,27 @@
             var login_user = JSON.parse(localStorage.getItem("Instagramlogin"));
             var All_users = JSON.parse(localStorage.getItem("Instagramusers"));
             var Registered_users = [];
+            var Login_user;
             for (var k = 0; k < All_users.length; k++) {
                 if (All_users[k].uemail != login_user.uemail) {
                     Registered_users.push(All_users[k]);
                 }
+                else{
+                    Login_user=All_users[k];
+                }
             }
+
+
+
+            // console.log(Registered_users,"logged user")
+            //  var all_posts=[];
+            // for(var i=0;i<Registered_users.length;i++){
+            //     if(Registered_users[i].posts!=undefined){
+            //         all_posts.push(Registered_users[i].posts)
+            //     }
+            // }
+            // console.log(all_posts)
+
             for (var i = 0; i < Registered_users.length; i++) {
                 finalsuggestions += `<div>
                             <div>
@@ -700,7 +726,7 @@
                 finalposts += ` <div id="post">
                         <div id="posthead">
                            <div>
-                            <img src="${Registered_users[j].user_info.p_image}"/>
+                            <img src="${Registered_users[j].user_info.p_image}" />
                             <p>${Registered_users[j].user_info.p_name}</p>
                             <p>. 15h</p>
                            </div>
@@ -728,15 +754,13 @@
                         </div>
                     </div>`;
                 posts.innerHTML = finalposts;
-
+                    
+                var switch_user=`<p><span>${Login_user.uname}</span><span id>Switch</span></p>`;
+                logoutUser.innerHTML=switch_user;
 
             }
-
-
-            // var profileuser=`<i class="fa-regular fa-user"></i>
-            // <p>${profiledata.uname}</p>`;
-            // // console.log(`${profiledata.uname}`,"profileuser here");
-            // profilename.innerHTML=profileuser;
+             
+           
 
         }
         function logout() {

@@ -279,6 +279,14 @@
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
             var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
+        
+
+            finallogin = ` <i class="fa-regular fa-user"></i>
+                    <p>${logindata.uname}</p>`;
+            // console.log(finallogin,"login name here");
+            profilename.innerHTML = finallogin;
+
+
 
            if(!!currentUser){
             var final_Profile;
@@ -351,11 +359,6 @@
 
 
             divprofileposts.innerHTML=profilepostsdata;
-
-            var name=` <p>${logindata.uname}</p>
-                            <button>Edit Profile</button>`;
-
-            profilename.innerHTML=name;
            }
          }  
     </script>
