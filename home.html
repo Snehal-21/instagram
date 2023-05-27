@@ -598,18 +598,27 @@
                 if(Registered_users[i].uname==input){
                     display_users=Registered_users[i];
                 
-                var display=`<div id="sugg-head">
+                var display=`<div onclick='redirect(${JSON.stringify(display_users)})' id="sugg-head">
                     <img src="${display_users.user_info.p_image}" />
                     <p>${display_users.uname}</p>
                     <p>Follow</p>
                 </div>`;
             }
+            console.log(display_users,"search user")
             }
            
             // console.log(display_users,"dis")
             divtodisplay.innerHTML=display;
             document.getElementById("Search_users").value='';
           
+        }
+        function redirect(user){
+            alert("working");
+            var singleProfile=JSON.stringify(user);
+            // console.log(singlejwell);
+            // alert("working");
+            localStorage.setItem("curreent-profile",singleProfile);
+            window.location.href='./profile.html';
         }
         window.onload = function () {
             var stories = document.getElementById("bodyheader");

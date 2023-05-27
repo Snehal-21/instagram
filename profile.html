@@ -280,7 +280,42 @@
             var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
             var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
         
+            var cprofile=JSON.parse(localStorage.getItem("curreent-profile"));
+            if(!!cprofile){
+                console.log(cprofile.posts[0],"cprofile here")
+            var div_profile=document.getElementById("profile");
+            var current_profile=`<div id="profilehead">
+                    <div id="profileimage">
+                        <img src="${cprofile.user_info.p_image}" alt="profile-image" />
+                    </div>
+                    <div id="profileinfo">
+                        <div id="profilename">
+                            <p>${cprofile.user_info.p_name}</p>
+                            <button style="cursor: pointer;" onclick="window.location.href='./editprofile.html'">Edit Profile</button>
+                        </div>
+                        <div>
+                            <p>Posts</p>
+                            <p>Followers</p>
+                            <p>Following</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="profilebody">
+                    <div id="profilebodyheadings">
+                        <div style="cursor: pointer;"; onclick="window.location.href='./addprofilepost.html'"><p>Posts</p></div>
+                        <div><p>Reels</p></div>
+                        <div><p>Saved</p></div>
+                        <div><p>Tagged</p></div>
+                    </div>
+                    <div id="mainprofile">
+                        <div>
+                            <img src="${cprofile.posts}" alt="post" />
+                        </div>
+                    </div>
+                </div>`;
 
+                div_profile.innerHTML=current_profile;
+            }
             finallogin = ` <i class="fa-regular fa-user"></i>
                     <p>${logindata.uname}</p>`;
             // console.log(finallogin,"login name here");
