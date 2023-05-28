@@ -509,7 +509,7 @@
                     </div>
                 </div>
                 <div id="mainposts">
-                    <div id="post">
+                    <!-- <div id="post">
                         <div id="posthead">
                             <div>
                                 <img src="" alt="image" />
@@ -538,7 +538,7 @@
                                 <p><span></span></p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div id="bodyright">
@@ -546,7 +546,7 @@
                     <!-- <p><span>snehal</span><span id>Logout</span></p> -->
                 </div>
                 <div id="suggested">
-                    <div id="sugg-head">
+                    <!-- <div id="sugg-head">
                         <p>Suggested for you</p>
                         <p>See All</p>
                     </div>
@@ -560,7 +560,7 @@
                                 <p>Follow</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -635,6 +635,8 @@
             var logindata = JSON.parse(localStorage.getItem("Instagramlogin"));
 
             // console.log(logindata,"login user");
+
+            //strory
             var storyfromls = JSON.parse(localStorage.getItem("story"));
             for (var i = 0; i < storyfromls.length; i++) {
                 finalstory += ` <div id="story">
@@ -682,10 +684,7 @@
             // }
             // posts.innerHTML = finalposts;
 
-            finallogin = ` <i class="fa-regular fa-user"></i>
-                    <p>${logindata.uname}</p>`;
-            // console.log(finallogin,"login name here");
-            loginuser.innerHTML = finallogin;
+           
 
             var button = `<p><span>snehal</span><span onclick="logout()">Logout</span></p>`;
             logoutUser.innerHTML = button;
@@ -704,6 +703,12 @@
             }
 
 
+            finallogin = ` <i class="fa-regular fa-user"></i>
+                    <p onclick=redirect_p(${JSON.stringify(Login_user)})</p>`;
+            console.log(Login_user.uname,"login name here");
+            loginuser.innerHTML = finallogin;
+
+
 
             // console.log(Registered_users,"logged user")
             //  var all_posts=[];
@@ -714,6 +719,8 @@
             // }
             // console.log(all_posts)
 
+
+            //suggestions
             for (var i = 0; i < Registered_users.length; i++) {
                 finalsuggestions += `<div>
                             <div>
@@ -730,6 +737,8 @@
                 // console.log(Registered_users[i], "users")
             }
 
+
+            //posts
             for (var j = 0; j < Registered_users.length; j++) {
 
                 finalposts += ` <div id="post">
@@ -771,6 +780,14 @@
              
            
 
+        }
+        function redirect(user){
+            alert("working");
+            var singleProfile=JSON.stringify(user);
+            // console.log(singlejwell);
+            // alert("working");
+            localStorage.setItem("curreent-profile",singleProfile);
+            window.location.href='./profile.html';
         }
         function logout() {
             alert("logout successful.")

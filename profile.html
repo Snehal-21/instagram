@@ -239,7 +239,7 @@
         </div>
         <div id="body">
             <div id="profile">
-                <div id="profilehead">
+                <div id="profilehead" class="head_profile">
                     <div id="profileimage">
                         <img src="https://us.123rf.com/450wm/kritchanut/kritchanut1406/kritchanut140600089/29213191-female-avatar-silhouette-profile-pictures.jpg" alt="profile-image" />
                     </div>
@@ -274,7 +274,7 @@
     <script>
          window.onload=function(){
             var profilename=document.getElementById("switch");
-            var changeprofile=document.getElementById("profilehead");
+            var changeprofile=document.querySelector(".head_profile");
             var profiledata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
@@ -282,8 +282,9 @@
         
             var cprofile=JSON.parse(localStorage.getItem("curreent-profile"));
             if(!!cprofile){
-                console.log(cprofile.posts[0],"cprofile here")
-            var div_profile=document.getElementById("profile");
+                console.log(cprofile.posts,"cprofile here")
+            var div_profile=document.getElementById("profilehead");
+            
             var current_profile=`<div id="profilehead">
                     <div id="profileimage">
                         <img src="${cprofile.user_info.p_image}" alt="profile-image" />
@@ -299,23 +300,54 @@
                             <p>Following</p>
                         </div>
                     </div>
-                </div>
-                <div id="profilebody">
-                    <div id="profilebodyheadings">
-                        <div style="cursor: pointer;"; onclick="window.location.href='./addprofilepost.html'"><p>Posts</p></div>
-                        <div><p>Reels</p></div>
-                        <div><p>Saved</p></div>
-                        <div><p>Tagged</p></div>
-                    </div>
-                    <div id="mainprofile">
-                        <div>
-                            <img src="${cprofile.posts}" alt="post" />
-                        </div>
-                    </div>
                 </div>`;
-
                 div_profile.innerHTML=current_profile;
+                var d_posts=document.getElementById("mainprofile");
+                // var div_posts=cprofile.posts;
+                var posts_see;
+                for(var i=0;i<cprofile.posts.length;i++){
+                    posts_see+=`<div>
+                            <img src="${cprofile.posts[i].image}" alt="post" />
+                        </div>`;
+                d_posts.innerHTML=posts_see;
+                }
             }
+
+            // var cprofile_p=JSON.parse(localStorage.getItem("curreent-profile-p"));
+            // if(!!cprofile_p){
+            //     console.log(cprofile.posts,"cprofile here")
+            // var div_profile=document.getElementById("profilehead");
+            
+            // var current_profile=`<div id="profilehead">
+            //         <div id="profileimage">
+            //             <img src="${cprofile_p.user_info.p_image}" alt="profile-image" />
+            //         </div>
+            //         <div id="profileinfo">
+            //             <div id="profilename">
+            //                 <p>${cprofile_p.user_info.p_name}</p>
+            //                 <button style="cursor: pointer;" onclick="window.location.href='./editprofile.html'">Edit Profile</button>
+            //             </div>
+            //             <div>
+            //                 <p>Posts</p>
+            //                 <p>Followers</p>
+            //                 <p>Following</p>
+            //             </div>
+            //         </div>
+            //     </div>`;
+            //     div_profile.innerHTML=current_profile;
+            //     var d_posts=document.getElementById("mainprofile");
+            //     // var div_posts=cprofile.posts;
+            //     var posts_see;
+            //     for(var i=0;i<cprofile_p.posts.length;i++){
+            //         posts_see+=`<div>
+            //                 <img src="${cprofile.posts[i].image}" alt="post" />
+            //             </div>`;
+            //     d_posts.innerHTML=posts_see;
+            //     }
+            // }
+
+
+
             finallogin = ` <i class="fa-regular fa-user"></i>
                     <p>${logindata.uname}</p>`;
             // console.log(finallogin,"login name here");
@@ -331,6 +363,7 @@
                     final_Profile=userdata[i].user_info;
                 }
             }
+            console.log(final_Profile,"final profile here...")
             // var profiledata=JSON.parse(localStorage.getItem("editprofile"));
             var editprofile=`<div id="profileimage">
                     <img src="${final_Profile.p_image}" alt="profile-image" />
@@ -346,6 +379,7 @@
                             <p>Following</p>
                         </div>
                     </div>`;
+                    console.log(editprofile,"edit profile here")
             changeprofile.innerHTML=editprofile;
 
             var user_posts=JSON.parse(localStorage.getItem("profilePost"))
