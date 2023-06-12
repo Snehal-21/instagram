@@ -253,6 +253,9 @@
                             <p>Followers</p>
                             <p>Following</p>
                         </div>
+                        <div>
+                            <button>Follow</button>
+                        </div>
                     </div>
                 </div>
                 <div id="profilebody">
@@ -279,28 +282,19 @@
             var logindata=JSON.parse(localStorage.getItem("Instagramlogin"));
             var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
             var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
-
-            finallogin = ` <i class="fa-regular fa-user"></i>
-                    <p>${logindata.uname}</p>`;
-            // console.log(finallogin,"login name here");
-            profilename.innerHTML = finallogin;
-
-           if(!!currentUser){
-            var final_Profile;
-            for(var i=0;i<userdata.length;i++){
-                // alert("got")
-                if(currentUser.uemail == userdata[i].uemail){
-                    final_Profile=userdata[i].user_info;
-                }
-            }
-            console.log(final_Profile,"final profile here...")
-            // var profiledata=JSON.parse(localStorage.getItem("editprofile"));
-            var editprofile=`<div id="profileimage">
-                    <img src="${final_Profile.p_image}" alt="profile-image" />
+        
+            var cprofile=JSON.parse(localStorage.getItem("curreent-profile"));
+            if(!!cprofile){
+                console.log(cprofile.posts,"cprofile here")
+            var div_profile=document.getElementById("profilehead");
+            
+            var current_profile=`<div id="profilehead">
+                    <div id="profileimage">
+                        <img src="${cprofile.user_info.p_image}" alt="profile-image" />
                     </div>
                     <div id="profileinfo">
                         <div id="profilename">
-                            <p>${final_Profile.p_name}</p>
+                            <p>${cprofile.user_info.p_name}</p>
                             <button style="cursor: pointer;" onclick="window.location.href='./editprofile.html'">Edit Profile</button>
                         </div>
                         <div>
@@ -308,57 +302,65 @@
                             <p>Followers</p>
                             <p>Following</p>
                         </div>
-                    </div>`;
-                    // console.log(editprofile,"edit profile here")
-            changeprofile.innerHTML=editprofile;
-
-            var user_posts=JSON.parse(localStorage.getItem("profilePost"))
-            var currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
-            var userdata=JSON.parse(localStorage.getItem("Instagramusers"));
-
-            var final_user_posts=[];
-            for(var i=0;i<user_posts.length;i++){
-                if(user_posts[i].email==currentUser.uemail){
-                    final_user_posts.push(user_posts[i]);
-                }
-            }
-
-
-
-            for(var i=0;i<userdata.length;i++){
-                // alert("inside for loop");
-                if(currentUser.uemail==userdata[i].uemail){
-                    // alert("got");
-                    if(userdata[i].posts === undefined){
-                        userdata[i].posts="";
-                    }
-                    else{
-                        userdata[i].posts=final_user_posts;
-                    }
-                    // alert("posts added successfuly")
-                }
-            }
-            localStorage.setItem("Instagramusers",JSON.stringify(userdata));
-            var final_Posts;
-            for(var i=0;i<userdata.length;i++){
-                // alert("got")
-                if(currentUser.uemail == userdata[i].uemail){
-                    final_Posts=userdata[i].posts;
-                }
-            }
-
-            var divprofileposts=document.getElementById("mainprofile");
-            var profilepostls=JSON.parse(localStorage.getItem("profilePost"));
-            var profilepostsdata="";
-            for(var i=0;i<final_Posts.length;i++){
-                profilepostsdata+=`<div>
-                            <img src="${final_Posts[i].image}" alt="post" />
+                        <div style="margin-top:30px;">
+                            <button style="height:30px;width:100px;background-color:blue;border:none;color:white;font-weight:bold;border-radius:5px">Follow</button>
+                        </div>
+                    </div>
+                </div>`;
+                div_profile.innerHTML=current_profile;
+                var d_posts=document.getElementById("mainprofile");
+                // var div_posts=cprofile.posts;
+                var posts_see;
+                for(var i=0;i<cprofile.posts.length;i++){
+                    posts_see+=`<div>
+                            <img src="${cprofile.posts[i].image}" alt="post" />
                         </div>`;
+                d_posts.innerHTML=posts_see;
+                }
+            }
+
+            var cprofile_p=JSON.parse(localStorage.getItem("curreent-profile-p"));
+            if(!!cprofile_p){
+                console.log(cprofile.posts,"cprofile here")
+            var div_profile=document.getElementById("profilehead");
+            
+            var current_profile=`<div id="profilehead">
+                    <div id="profileimage">
+                        <img src="${cprofile_p.user_info.p_image}" alt="profile-image" />
+                    </div>
+                    <div id="profileinfo">
+                        <div id="profilename">
+                            <p>${cprofile_p.user_info.p_name}</p>
+                            <button style="cursor: pointer;" onclick="window.location.href='./editprofile.html'">Edit Profile</button>
+                        </div>
+                        <div>
+                            <p>Posts</p>
+                            <p>Followers</p>
+                            <p>Following</p>
+                        </div>
+                    </div>
+                </div>`;
+                div_profile.innerHTML=current_profile;
+                var d_posts=document.getElementById("mainprofile");
+                var div_posts=cprofile_p.posts;
+                var posts_see="";
+                for(var i=0;i<div_posts.length;i++){
+                    posts_see+=`<div>
+                            <img src="${div_posts[i].image}" alt="post" />
+                        </div>`;
+                d_posts.innerHTML=posts_see;
+                }
             }
 
 
-            divprofileposts.innerHTML=profilepostsdata;
-           }
+
+            finallogin = ` <i class="fa-regular fa-user"></i>
+                    <p>${logindata.uname}</p>`;
+            // console.log(finallogin,"login name here");
+            profilename.innerHTML = finallogin;
+
+
+
          }  
     </script>
 </body>
