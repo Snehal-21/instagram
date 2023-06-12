@@ -615,7 +615,7 @@
                     <p id="follow" onclick='follow(${JSON.stringify(display_users)})'>Follow</p>
                 </div>`;
                 }
-                console.log(display_users, "search user")
+                // console.log(display_users, "search user")
             }
 
             divtodisplay.innerHTML = display;
@@ -636,32 +636,33 @@
             let followUser=user;
             let userdata=JSON.parse(localStorage.getItem("Instagramusers"));
           
-        
+            for (var j=0;j<userdata.length;j++){
+                alert("foloowing got")
+                 if(followUser.uemail==userdata[j].uemail){
+                alert("got");
+                if(userdata[j].following===undefined){
+                    userdata[j].following=[user];
+                }
+                else{
+                    userdata[j].following.push(user);
+                }
+                alert("followers added successfully")
+              }
+            }
+
             for(var i=0;i<userdata.length;i++){
               if(followUser.uemail==userdata[i].uemail){
                 alert("got");
                 if(userdata[i].followers===undefined){
-                    userdata[i].followers=[followUser];
+                    userdata[i].followers=[user];
                 }
                 else{
-                    userdata[i].followeres.push(followUser);
+                    userdata[i].followers.push(user);
                 }
                 alert("followers added successfully")
               }
             }
-            for (var j=0;j<userdata.length;j++){
-                alert("foloowing got")
-                 if(followUser.uemail==userdata[i].uemail){
-                alert("got");
-                if(userdata[i].following===undefined){
-                    userdata[i].following=[user];
-                }
-                else{
-                    userdata[i].following.push(user);
-                }
-                alert("followers added successfully")
-              }
-            }
+            
             localStorage.setItem("Instagramusers",JSON.stringify(userdata));
         }
         //searchprofile redirection

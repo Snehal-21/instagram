@@ -287,13 +287,16 @@
 
            if(!!currentUser){
             var final_Profile;
+            var all_data;
             for(var i=0;i<userdata.length;i++){
                 // alert("got")
                 if(currentUser.uemail == userdata[i].uemail){
                     final_Profile=userdata[i].user_info;
+                    all_data=userdata[i];
                 }
             }
-            console.log(final_Profile,"final profile here...")
+            var followcount=all_data.followers.length;
+            console.log(followcount,"count")
             // var profiledata=JSON.parse(localStorage.getItem("editprofile"));
             var editprofile=`<div id="profileimage">
                     <img src="${final_Profile.p_image}" alt="profile-image" />
@@ -305,7 +308,7 @@
                         </div>
                         <div>
                             <p>Posts</p>
-                            <p>Followers</p>
+                            <p>Followers<span>${followcount}</span></p>
                             <p>Following</p>
                         </div>
                     </div>`;
