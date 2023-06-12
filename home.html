@@ -609,9 +609,9 @@
                 if (Registered_users[i].uname == input) {
                     display_users = Registered_users[i];
 
-                    var display = `<div onclick='redirectsingle(${JSON.stringify(display_users)})' id="sugg-head">
+                    var display = `<div id="sugg-head">
                     <img src="${display_users.user_info.p_image}" />
-                    <p>${display_users.uname}</p>
+                    <p  onclick='redirectsingle(${JSON.stringify(display_users)})'>${display_users.uname}</p>
                     <p id="follow" onclick='follow(${JSON.stringify(display_users)})'>Follow</p>
                 </div>`;
                 }
@@ -624,13 +624,45 @@
         }
 
         //follow function---------
-        function follow(user){
-            alert("follow working");
-            var follow=document.getElementById("follow");
-            var clickfoloow=`<p>Following</p>`
-            follow.innerHTML=clickfoloow;
-            window.location.href='./home.html'
+        // function follow(user){
+        //     alert("follow working");
+        //     var follow=document.getElementById("follow");
+        //     var clickfoloow=`<p>Following</p>`
+        //     follow.innerHTML=clickfoloow;
             
+        // }
+
+        function follow(user){
+            let followUser=user;
+            let userdata=JSON.parse(localStorage.getItem("Instagramusers"));
+          
+        
+            for(var i=0;i<userdata.length;i++){
+              if(followUser.uemail==userdata[i].uemail){
+                alert("got");
+                if(userdata[i].followers===undefined){
+                    userdata[i].followers=[followUser];
+                }
+                else{
+                    userdata[i].followeres.push(followUser);
+                }
+                alert("followers added successfully")
+              }
+            }
+            for (var j=0;j<userdata.length;j++){
+                alert("foloowing got")
+                 if(followUser.uemail==userdata[i].uemail){
+                alert("got");
+                if(userdata[i].following===undefined){
+                    userdata[i].following=[user];
+                }
+                else{
+                    userdata[i].following.push(user);
+                }
+                alert("followers added successfully")
+              }
+            }
+            localStorage.setItem("Instagramusers",JSON.stringify(userdata));
         }
         //searchprofile redirection
         function redirectsingle(user) {
