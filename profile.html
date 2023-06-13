@@ -189,6 +189,17 @@
         height:100%;
         width:100%;
     }
+    .spancount{
+        height:20px;
+        width:20px;
+        background-color: rgb(113, 113, 230);
+        color:white;
+        border-radius: 50%;
+        margin-left: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
 <body>
     <div id="screen">
@@ -295,8 +306,11 @@
                     all_data=userdata[i];
                 }
             }
-            var followcount=all_data.followers.length;
-            console.log(followcount,"count")
+            var followingcount=all_data.following.length;
+            console.log(followingcount,"count");
+
+            var followercount=all_data.followers.length;
+            console.log(followercount,"followercount")
             // var profiledata=JSON.parse(localStorage.getItem("editprofile"));
             var editprofile=`<div id="profileimage">
                     <img src="${final_Profile.p_image}" alt="profile-image" />
@@ -308,8 +322,8 @@
                         </div>
                         <div>
                             <p>Posts</p>
-                            <p>Followers<span>${followcount}</span></p>
-                            <p>Following</p>
+                            <p style="display:flex">Followers<span class="spancount">${followercount}</span></p>
+                            <p style="display:flex">Following<span class="spancount">${followingcount}</span></p>
                         </div>
                     </div>`;
                     // console.log(editprofile,"edit profile here")

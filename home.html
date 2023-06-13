@@ -634,32 +634,34 @@
 
         function follow(user){
             let followUser=user;
+            let currentUser=JSON.parse(localStorage.getItem("Instagramlogin"));
             let userdata=JSON.parse(localStorage.getItem("Instagramusers"));
           
             for (var j=0;j<userdata.length;j++){
-                alert("foloowing got")
-                 if(followUser.uemail==userdata[j].uemail){
-                alert("got");
+                 if(currentUser.uemail==userdata[j].uemail){
+                // alert("got");
                 if(userdata[j].following===undefined){
                     userdata[j].following=[user];
+                    userdata[j].followers=[];
                 }
                 else{
                     userdata[j].following.push(user);
                 }
-                alert("followers added successfully")
+                // alert("followers added successfully")
               }
             }
 
             for(var i=0;i<userdata.length;i++){
               if(followUser.uemail==userdata[i].uemail){
-                alert("got");
+                // alert("got");
                 if(userdata[i].followers===undefined){
                     userdata[i].followers=[user];
+                    userdata[i].following=[];
                 }
                 else{
                     userdata[i].followers.push(user);
                 }
-                alert("followers added successfully")
+                // alert("followers added successfully")
               }
             }
             
