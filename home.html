@@ -26,7 +26,7 @@
 
     #sidebar {
         width: 15%;
-        border: 1px solid grey;
+        border: 1px solid rgb(237, 235, 235);
         height: 700px;
         position: fixed;
     }
@@ -40,6 +40,10 @@
         overflow-y: auto;
         overflow-x: hidden;
         margin-left: 15%;
+    }
+
+    #body::-webkit-scrollbar{
+        display: none;
     }
 
     #bodyleft {
@@ -320,44 +324,47 @@
         color: blue;
     }
 
-    #suggestions {
+    #suggested {
         width: 100%;
         padding: 10px;
         margin-top: 10px;
     }
 
-    #suggestions>div {
+    #suggested>div {
         height: 40px;
         width: 100%;
         /* border:1px solid green; */
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
-    #suggestions>div>div:nth-child(1) {
-        width: 80%;
-        display: flex;
+    #suggested>div>div:nth-child(1) {
+        width: 20%;
+        /* display: flex; */
     }
 
-    #suggestions>div>div:nth-child(1)>img {
+    #suggested>div>div:nth-child(1)>img {
         height: 80%;
-        width: 15%;
+        width: 50%;
         border-radius: 50%;
         /* border:1px solid gold; */
         margin-right: 10px;
     }
-
-    #suggestions>div>div:nth-child(1)>p {
+    #suggested>div>div:nth-child(2){
+        width:50%;
+    }
+    #suggested>div>div:nth-child(2)>p:nth-child(1) {
         font-weight: bold;
+        color:black;
     }
 
-    #suggestions>div>div:nth-child(1)>p>span {
+    #suggested>div>div:nth-child(2)>p:nth-child(2) {
         color: grey;
         font-size: 14px;
     }
 
-    #suggestions>div>div:nth-child(2)>p {
+    #suggested>div>div:nth-child(3)>p {
         color: blue;
         font-size: 15px;
     }
@@ -373,14 +380,14 @@
         overflow-x: hidden;
         transition: 0.5s;
         /* padding-top: 60px; */
-        border-right: 1px solid grey;
-        border-top: 1px solid grey;
+        border-right: 1px solid rgb(245, 245, 245);
+        border-top: 1px solid rgb(244, 240, 240);
         box-shadow: 5px 10px 12px solid rgb(218, 215, 215);
     }
 
     .sidebar>div:nth-child(1) {
         height: 150px;
-        border-bottom: 1px solid grey;
+        border-bottom: 1px solid rgb(237, 234, 234);
     }
 
     .sidebar>div>h1 {
@@ -398,7 +405,7 @@
         margin-left: 15px;
         padding-left: 20px;
         padding-right: 5px;
-        border: 1px solid grey;
+        border: 1px solid rgb(254, 252, 252);
         border-radius: 5px;
         background-color: rgb(247, 241, 241);
         color: black;
@@ -406,11 +413,12 @@
     }
 
     .sidebar>div>form>input:nth-child(2) {
-        height: 40px;
+        height: 38px;
         background-color: blue;
         color: white;
         border: none;
         width: 20%;
+        font-weight: bold;
         border-radius: 5px;
     }
 
@@ -482,7 +490,11 @@
                 </div>
                 <div id="switch" style="cursor: pointer;" onclick="window.location.href='./profile.html'">
                     <i class="fa-regular fa-user"></i>
-                    <p>Profile</p>
+                    <p >Profile</p>
+                </div>
+                <div id="logout" style="cursor: pointer;" onclick="logout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <p >logout</p>
                 </div>
             </div>
             <div id="sidefooter">
@@ -515,9 +527,9 @@
             <div id="bodyleft">
                 <div id="bodyheader">
                     <div id="story">
-                        <div id="storyimage">
+                        <!-- <div id="storyimage">
                             <img src="" alt="storyimage" />
-                        </div>
+                        </div> -->
                         <p></p>
                     </div>
                 </div>
@@ -579,6 +591,171 @@
         </div>
     </div>
     <script>
+
+            //window.onload------------------
+            window.onload = function () {
+            var logindata = JSON.parse(localStorage.getItem("Instagramlogin"));
+            if(logindata){
+
+            var stories = document.getElementById("bodyheader");
+            var posts = document.getElementById("mainposts");
+            var loginuser = document.getElementById("switch");
+            var logoutUser = document.getElementById("profile");
+            var suggestedusers = document.getElementById("suggested");
+            var profilename = document.getElementById("switch");
+            var finalstory = "";
+            var finalposts = "";
+            var finallogin = "";
+            var finalsuggestions = "";
+           
+
+            //strory----------------------
+            var storyfromls = JSON.parse(localStorage.getItem("story"));
+            for (var i = 0; i < storyfromls.length; i++) {
+                finalstory += ` <div id="story">
+                        <div id="storyimage">
+                            <img src="${storyfromls[i].image}" />
+                        </div>
+                        <p>${storyfromls[i].name}</p>
+                    </div>`;
+            }
+            stories.innerHTML = finalstory;
+
+
+            // var postfromls = JSON.parse(localStorage.getItem("post"));
+            // console.log(postfromls,"post")
+            // for (var j = 0; j < postfromls.length; j++) {
+            //     finalposts += ` <div id="post">
+            //             <div id="posthead">
+            //                <div>
+            //                 <img src="${postfromls[j].image}" />
+            //                 <p>${postfromls[j].name}</p>
+            //                 <p>. 15h</p>
+            //                </div>
+            //                <div>
+            //                 <p>...</p>
+            //                </div>
+            //             </div>
+            //             <div id="postimage">
+            //                 <img src='${postfromls[j].post}'' />
+            //             </div>
+            //             <div id="postdes">
+            //             <div>
+            //                 <div>
+            //                     <i class="fa-regular fa-heart"></i>
+            //                     <i class="fa-regular fa-comment"></i>
+            //                     <i class="fa-regular fa-paper-plane"></i>
+            //                 </div>
+            //                 <div>
+            //                     <i class="fa-regular fa-bookmark"></i>
+            //                 </div>
+            //             </div>
+            //             <div>
+            //                 <p><span>${postfromls[j].name}</span>${postfromls[j].description}</p>
+            //             </div>
+            //             </div>
+            //         </div>`;
+            // }
+            // posts.innerHTML = finalposts;
+
+
+
+            var button = `<p><span>snehal</span><span onclick="logout()">Logout</span></p>`;
+            logoutUser.innerHTML = button;
+
+            //registered users and login users classification-------------
+            var login_user = JSON.parse(localStorage.getItem("Instagramlogin"));
+            var All_users = JSON.parse(localStorage.getItem("Instagramusers"));
+            var Registered_users = [];
+            var Login_user;
+            for (var k = 0; k < All_users.length; k++) {
+                if (All_users[k].uemail != login_user.uemail) {
+                    Registered_users.push(All_users[k]);
+                }
+                else {
+                    Login_user = All_users[k];
+                }
+            }
+
+            //sidebar profile name display
+            finallogin = ` <i class="fa-regular fa-user"></i>
+                    <p onclick=redirect_p(${JSON.stringify(Login_user)})>${login_user.uname}</p>`;
+            loginuser.innerHTML = finallogin;
+
+            //Switch user profile name dispalay
+
+            var switch_user = `<p><span>${Login_user.uname}</span><span id>Switch</span></p>`;
+            logoutUser.innerHTML = switch_user;
+
+
+            //suggestions----need to check again
+        
+            for (var i = 0; i < Registered_users.length; i++) {
+                console.log(Registered_users[i].uname, "loginuser");
+                finalsuggestions+= `<div>
+                            <div>
+                                <img src="${Registered_users[i].user_info.p_image}" alt="img" />
+                            </div>
+                            <div>
+                                <p>${Registered_users[i].uname}</p>
+                                <p>Suggested for You</p>
+                            </div>
+                            <div>
+                                <p>Follow</p>
+                            </div>
+                        </div>`                     ;
+                        
+            }
+            suggestedusers.innerHTML = finalsuggestions;
+
+            //posts
+            for (var j = 0; j < Registered_users.length; j++) {
+
+                for (var k = 0; k < Registered_users[j].posts.length; k++) {
+                    finalposts += ` <div id="post">
+                        <div id="posthead">
+                           <div>
+                            <img src="${Registered_users[j].user_info.p_image}" />
+                            <p>${Registered_users[j].user_info.p_name}</p>
+                            <p>. 15h</p>
+                           </div>
+                           <div>
+                            <p>...</p>
+                           </div>
+                        </div>
+                        <div id="postimage">
+                            <img src="${Registered_users[j].posts[k].image}" />
+                        </div>
+                        <div id="postdes">
+                        <div>
+                            <div>
+                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-regular fa-comment"></i>
+                                <i class="fa-regular fa-paper-plane"></i>
+                            </div>
+                            <div>
+                                <i class="fa-regular fa-bookmark"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <p><span>${Registered_users[j].user_info.p_name}</span>${Registered_users[j].posts[k].des}</p>
+                        </div>
+                        </div>
+                    </div>`;
+                    posts.innerHTML = finalposts;
+                }
+
+            }
+        }else{
+            alert("Login user abscent");
+            window.location.href="./login.html";
+        }
+        }
+
+
+
+
+
         function opennav() {
             document.getElementById("mySidebar").style.width = "300px";
         }
@@ -675,160 +852,7 @@
             // window.location.href = './singleprofile.html';
             window.location.href='./singleprofile.html';
         }
-        //window.onload------------------
-        window.onload = function () {
-            var stories = document.getElementById("bodyheader");
-            var posts = document.getElementById("mainposts");
-            var loginuser = document.getElementById("switch");
-            var logoutUser = document.getElementById("profile");
-            var suggestedusers = document.getElementById("suggestions");
-            var profilename = document.getElementById("switch");
-            var finalstory = "";
-            var finalposts = "";
-            var finallogin = "";
-            var finalsuggestions = "";
-            var logindata = JSON.parse(localStorage.getItem("Instagramlogin"));
-
-            //strory----------------------
-            var storyfromls = JSON.parse(localStorage.getItem("story"));
-            for (var i = 0; i < storyfromls.length; i++) {
-                finalstory += ` <div id="story">
-                        <div id="storyimage">
-                            <img src="${storyfromls[i].image}" />
-                        </div>
-                        <p>${storyfromls[i].name}</p>
-                    </div>`;
-            }
-            stories.innerHTML = finalstory;
-
-
-            // var postfromls = JSON.parse(localStorage.getItem("post"));
-            // console.log(postfromls,"post")
-            // for (var j = 0; j < postfromls.length; j++) {
-            //     finalposts += ` <div id="post">
-            //             <div id="posthead">
-            //                <div>
-            //                 <img src="${postfromls[j].image}" />
-            //                 <p>${postfromls[j].name}</p>
-            //                 <p>. 15h</p>
-            //                </div>
-            //                <div>
-            //                 <p>...</p>
-            //                </div>
-            //             </div>
-            //             <div id="postimage">
-            //                 <img src='${postfromls[j].post}'' />
-            //             </div>
-            //             <div id="postdes">
-            //             <div>
-            //                 <div>
-            //                     <i class="fa-regular fa-heart"></i>
-            //                     <i class="fa-regular fa-comment"></i>
-            //                     <i class="fa-regular fa-paper-plane"></i>
-            //                 </div>
-            //                 <div>
-            //                     <i class="fa-regular fa-bookmark"></i>
-            //                 </div>
-            //             </div>
-            //             <div>
-            //                 <p><span>${postfromls[j].name}</span>${postfromls[j].description}</p>
-            //             </div>
-            //             </div>
-            //         </div>`;
-            // }
-            // posts.innerHTML = finalposts;
-
-
-
-            var button = `<p><span>snehal</span><span onclick="logout()">Logout</span></p>`;
-            logoutUser.innerHTML = button;
-
-            //registered users and login users classification-------------
-            var login_user = JSON.parse(localStorage.getItem("Instagramlogin"));
-            var All_users = JSON.parse(localStorage.getItem("Instagramusers"));
-            var Registered_users = [];
-            var Login_user;
-            for (var k = 0; k < All_users.length; k++) {
-                if (All_users[k].uemail != login_user.uemail) {
-                    Registered_users.push(All_users[k]);
-                }
-                else {
-                    Login_user = All_users[k];
-                }
-            }
-
-            //sidebar profile name display
-            finallogin = ` <i class="fa-regular fa-user"></i>
-                    <p onclick=redirect_p(${JSON.stringify(Login_user)})>${login_user.uname}</p>`;
-            loginuser.innerHTML = finallogin;
-
-            //Switch user profile name dispalay
-
-            var switch_user = `<p><span>${Login_user.uname}</span><span id>Switch</span></p>`;
-            logoutUser.innerHTML = switch_user;
-
-
-            //suggestions----need to check again
-            
-            // for (var i = 0; i < Registered_users.length; i++) {
-            //     console.log(Registered_users[i].uname, "loginuser");
-            //     finalsuggestions+= `<div>
-            //                 <div>
-            //                     <img src="" alt="img" />
-            //                     <p>${Registered_users[i].uname}<span>Suggested for You</span></p>
-            //                 </div>
-            //                 <div>
-            //                     <p>Follow</p>
-            //                 </div>
-            //             </div>`                     ;
-            //             suggestedusers.innerHTML = finalsuggestions;
-            // }
-
-
-            //posts
-            for (var j = 0; j < Registered_users.length; j++) {
-
-                for (var k = 0; k < Registered_users[j].posts.length; k++) {
-                    finalposts += ` <div id="post">
-                        <div id="posthead">
-                           <div>
-                            <img src="${Registered_users[j].user_info.p_image}" />
-                            <p>${Registered_users[j].user_info.p_name}</p>
-                            <p>. 15h</p>
-                           </div>
-                           <div>
-                            <p>...</p>
-                           </div>
-                        </div>
-                        <div id="postimage">
-                            <img src="${Registered_users[j].posts[k].image}" />
-                        </div>
-                        <div id="postdes">
-                        <div>
-                            <div>
-                                <i class="fa-regular fa-heart"></i>
-                                <i class="fa-regular fa-comment"></i>
-                                <i class="fa-regular fa-paper-plane"></i>
-                            </div>
-                            <div>
-                                <i class="fa-regular fa-bookmark"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <p><span>${Registered_users[j].user_info.p_name}</span>${Registered_users[j].posts[k].des}</p>
-                        </div>
-                        </div>
-                    </div>`;
-                    posts.innerHTML = finalposts;
-                }
-
-            }
-
-
-
-
-
-        }
+    
         function redirect(user) {
             alert("working");
             var singleProfile = JSON.stringify(user);
